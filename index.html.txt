@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O'flix - Votre plateforme de streaming personnalisée</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #141414;
+            color: #ffffff;
+        }
+        header {
+            background-color: #000000;
+            padding: 1rem;
+            text-align: center;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e50914;
+        }
+        nav {
+            margin-top: 1rem;
+        }
+        nav a, .button {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            background-color: #e50914;
+            border-radius: 4px;
+        }
+        main {
+            padding: 2rem;
+        }
+        .section {
+            margin-bottom: 2rem;
+        }
+        .section h2 {
+            border-bottom: 2px solid #e50914;
+            padding-bottom: 0.5rem;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .content-item {
+            background-color: #232323;
+            padding: 1rem;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        input, button {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+        }
+        button {
+            background-color: #e50914;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">O'flix</div>
+        <nav>
+            <a href="#videos">Vidéos</a>
+            <a href="#musique">Musique</a>
+            <a href="#inscription" class="button">Inscription</a>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="videos" class="section">
+            <h2>O'flix Vidéos</h2>
+            <div class="content-grid">
+                <div class="content-item">Vidéo 1</div>
+                <div class="content-item">Vidéo 2</div>
+                <div class="content-item">Vidéo 3</div>
+                <div class="content-item">Vidéo 4</div>
+            </div>
+        </section>
+        
+        <section id="musique" class="section">
+            <h2>O'flix Musique</h2>
+            <div class="content-grid">
+                <div class="content-item">Musique 1</div>
+                <div class="content-item">Musique 2</div>
+                <div class="content-item">Musique 3</div>
+                <div class="content-item">Musique 4</div>
+            </div>
+        </section>
+
+        <section id="inscription" class="section">
+            <h2>Inscription</h2>
+            <form id="signup-form">
+                <input type="text" id="username" placeholder="Nom d'utilisateur" required>
+                <input type="email" id="email" placeholder="Adresse e-mail" required>
+                <input type="password" id="password" placeholder="Mot de passe" required>
+                <input type="password" id="confirm-password" placeholder="Confirmer le mot de passe" required>
+                <button type="submit">S'inscrire</button>
+            </form>
+            <div id="error-message"></div>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            var username = document.getElementById('username').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+            var errorMessage = document.getElementById('error-message');
+
+            if (password !== confirmPassword) {
+                errorMessage.textContent = "Les mots de passe ne correspondent pas.";
+                errorMessage.style.color = "#e50914";
+                return;
+            }
+
+            // Simulation de l'envoi d'un code de confirmation
+            var confirmationCode = Math.floor(100000 + Math.random() * 900000);
+            console.log("Code de confirmation pour " + email + ": " + confirmationCode);
+
+            errorMessage.textContent = "Un code de confirmation a été envoyé à " + email + ". Veuillez vérifier votre boîte de réception.";
+            errorMessage.style.color = "#4CAF50";
+
+            // Dans une vraie application, vous enverriez ce code par email
+            // et implémenteriez un mécanisme pour que l'utilisateur entre ce code
+        });
+    </script>
+</body>
+</html>
