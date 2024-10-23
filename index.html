@@ -1,12 +1,69 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
+ <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O'flix BENIN - Votre plateforme de streaming personnalisée</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+
+        /* Ajout des nouveaux styles pour les services */
+        .service-section {
+            margin-bottom: 20px;
+        }
+   
+			
+        .service-section h3 {
+            background-color: #e50914;
+            color: white;
+            padding: 15px;
+            margin: 0;
+            cursor: pointer;
+            display: flex;
+          
+        }
+
+        .service-section h3:after {
+            content: '\f078';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            font-size: 0.8em;
+            transition: transform 0.3s;
+        }
+
+        .service-section h3.active:after {
+            transform: rotate(180deg);
+        }
+
+        .service-text {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: white;
+            color: #e50914;
+            padding: 0 20px;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .service-text.active {
+            max-height: 2000px;
+            padding: 20px;
+        }
+
+        .service-text ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .service-text li {
+            margin: 10px 0;
+        }
+
+    
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #141414;
@@ -14,6 +71,7 @@
             overflow-x: hidden;
         }
 
+        /* Styles pour l'écran de chargement */
         .splash-screen {
             position: fixed;
             top: 0;
@@ -52,43 +110,6 @@
             animation: loading 2.5s ease-in-out forwards;
         }
 
-        header {
-            background-color: #000000;
-            padding: 1rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #e50914;
-            animation: slideInFromTop 1s ease-out 3.5s backwards;
-        }
-
-        .social-media {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            animation: slideInFromLeft 1s ease-out 3.5s backwards;
-        }
-
-        .facebook-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .facebook-button:hover {
-            transform: scale(1.2) rotate(360deg);
-        }
-
-        .facebook-icon {
-            width: 20px;
-            height: 20px;
-        }
-
         @keyframes fadeOut {
             from { opacity: 1; }
             to { opacity: 0; visibility: hidden; }
@@ -105,6 +126,162 @@
             100% { width: 100%; }
         }
 
+        /* Styles pour l'en-tête fixe */
+        .header-container {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: #000000;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        header {
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            animation: slideInFromTop 1s ease-out 3.5s backwards;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e50914;
+            margin-bottom: 1rem;
+        }
+
+        .header-text {
+            font-size: 1.1em;
+            margin: 1rem 0;
+            padding: 0 20px;
+            line-height: 1.6;
+        }
+
+        .social-media {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            animation: slideInFromLeft 1s ease-out 3.5s backwards;
+        }
+
+        /* Navigation styles */
+        nav {
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            animation: slideInFromTop 1s ease-out 3.7s backwards;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background-color: #e50914;
+            border-radius: 4px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #ff0f1f;
+            transform: scale(1.05);
+        }
+
+        /* Styles pour les sections */
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            background: linear-gradient(90deg, #e50914 0%, #141414 100%);
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0;
+            transition: 0.3s;
+        }
+
+        .section h2:after {
+            content: '\f078';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            font-size: 0.8em;
+        }
+
+        .section h2.active:after {
+            transform: rotate(180deg);
+        }
+
+        /* Exception pour la section À propos */
+        #about h2 {
+            cursor: default;
+            background: #e50914;
+        }
+
+        #about h2:after {
+            display: none;
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #232323;
+            border-radius: 0 0 5px 5px;
+        }
+
+        #about .section-content {
+            max-height: none;
+            overflow: visible;
+            padding: 20px;
+        }
+
+        /* Styles pour le contenu À propos */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.05);
+            background-color: #128C7E;
+        }
+
+        .whatsapp-icon {
+            width: 24px;
+            height: 24px;
+        }
+
         @keyframes slideInFromTop {
             from { transform: translateY(-100%); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
@@ -115,157 +292,26 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
-        nav {
-            margin-top: 1rem;
-            animation: slideInFromTop 1s ease-out 3.7s backwards;
-        }
-
-        nav a, .button {
-            color: #ffffff;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            margin: 0 0.5rem;
-            background-color: #e50914;
-            border-radius: 4px;
-        }
-
-        main {
-            padding: 2rem;
-            animation: fadeIn 1s ease-out 4s backwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .section {
-            margin-bottom: 2rem;
-        }
-
-        .section h2 {
-            border-bottom: 2px solid #e50914;
-            padding-bottom: 0.5rem;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .content-item {
-            background-color: #232323;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .about-us, .founder {
-            background-color: #232323;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .whatsapp-button {
-            display: inline-block;
-            background-color: #25D366;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 1rem;
-        }
-
-        .whatsapp-icon {
-            width: 20px;
-            height: 20px;
-            vertical-align: middle;
-            margin-right: 5px;
-        }
-
-        .subsection {
-            background-color: #1f1f1f;
-            padding: 1rem;
-            margin-top: 1rem;
-            border-radius: 8px;
-        }
-
-        .accordion {
-            background-color: #333;
-            color: #fff;
-            cursor: pointer;
-            padding: 18px;
-            width: 100%;
-            text-align: left;
-            border: none;
-            outline: none;
-            transition: 0.4s;
-            font-size: 1rem;
-        }
-
-        .accordion:hover {
-            background-color: #444;
-        }
-
-        .panel {
-            padding: 0 18px;
-            background-color: #1f1f1f;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out;
-        }
-
-        .video-title {
-            margin-top: 0.5rem;
-            font-style: italic;
-            color: #999;
-        }
-
-        .youtube-audio-player {
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
+        /* Responsive Design */
         @media screen and (max-width: 768px) {
-            main {
-                padding: 1rem;
+            .splash-logo {
+                font-size: 3rem;
             }
-            .video-container {
-                padding-bottom: 75%;
+
+            nav {
+                flex-direction: column;
             }
-            nav a, .button {
-                display: block;
-                margin: 0.5rem 0;
-            }
-            .accordion {
-                font-size: 0.9rem;
-                padding: 15px;
+
+            nav a {
+                width: 80%;
+                margin: 5px auto;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Écran de chargement -->
     <div class="splash-screen">
         <div class="splash-logo">O'flix BENIN</div>
         <div class="loading-bar-container">
@@ -273,26 +319,136 @@
         </div>
     </div>
 
-    <header>
-        <div class="social-media">
-            <a href="https://www.facebook.com/profile.php?id=61567176785085" target="_blank" class="facebook-button">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="facebook-icon">
-            </a>
+    </style>
+</head>
+<body>
+    <!-- Écran de chargement -->
+    <div class="splash-screen">
+        <div class="splash-logo">O'flix BENIN</div>
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
         </div>
-        <div class="logo">O'flix BENIN</div>
-        <nav>
-		 </div>
-		O'FLIX BENIN EST VOTRE SITE DE STREAMING DES SERIES DE ORINX PRODUCTION ET DES MUSIQUES BENINOISES AYANT UN LIEN DIRECT AVEC LA PLATEFORME YOUTUBE  
-		<nav>
-		<nav>
-		    <a href="#videos">Vidéos</a>
-            <a href="#musique">Musique</a>
-            <a href="#founder">Notre Fondateur</a>
-            <a href="#about">À propos</a>
-        </nav>
-    </header>
-    
+    </div>
+
+  <!-- En-tête fixe -->
+    <div class="header-container">
+        <header>
+            <div class="social-media">
+                <a href="https://www.facebook.com/profile.php?id=61567176785085" target="_blank" class="facebook-button">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="facebook-icon" style="width: 20px; height: 20px;">
+                </a>
+            </div>
+            <div class="logo">O'flix BENIN</div>
+            <div class="header-text">
+                O'FLIX BENIN EST VOTRE SITE DE STREAMING DES SERIES DE ORINX PRODUCTION ET DES MUSIQUES BENINOISES AYANT UN LIEN DIRECT AVEC LA PLATEFORME YOUTUBE
+            </div>
+            <nav>
+                <a href="#services">Nos Services</a>
+                <a href="#videos">Vidéos</a>
+                <a href="#musique">Musique</a>
+                <a href="#founder">Notre Fondateur</a>
+                <a href="#about">À propos</a>
+            </nav>
+        </header>
+    </div>
+
     <main>
+        <!-- Section Services avec les nouvelles modifications -->
+        <section id="services" class="section">
+            <h2>Nos Services</h2>
+            
+            <div class="service-section">
+                <h3>REALISATION DE VIDEO LYRICS</h3>
+                <div class="service-text">
+                    <p>Nous réalisons des videos lyrics avec des design et une charte graphique a la pointe</p>
+                    <p><strong>Donnez vie à vos paroles avec une vidéo lyrics professionnelle !</strong></p>
+
+                    <p>Vous souhaitez sublimer vos chansons avec une vidéo lyrics captivante ? Que vous soyez un artiste émergent ou confirmé, une bonne vidéo lyrics est essentielle pour connecter vos fans à vos paroles et renforcer l'impact de votre musique.</p>
+
+                    <p><strong>Pourquoi choisir notre service de réalisation de vidéos lyrics ?</strong></p>
+                    <ul>
+                        <li>🎶 <strong>Créativité et originalité</strong> : Chaque vidéo lyrics est conçue pour refléter l'ambiance unique de votre chanson et captiver votre public.</li>
+                        <li>💡 <strong>Personnalisation complète</strong> : Nous adaptons le style visuel aux émotions et au message de vos paroles, avec des effets graphiques qui font ressortir chaque mot.</li>
+                        <li>🎥 <strong>Qualité professionnelle</strong> : Des animations fluides et dynamiques pour un rendu visuel impeccable.</li>
+                        <li>⏱️ <strong>Rapidité d'exécution</strong> : Livraison rapide et respect des délais pour que vous puissiez partager votre vidéo dès que votre chanson est prête.</li>
+                        <li>🔥 <strong>Optimisé pour les plateformes</strong> : Formats adaptés pour YouTube, Instagram, TikTok et bien plus encore.</li>
+                    </ul>
+
+                    <p>Qu'il s'agisse de lancer un nouveau single ou de donner un second souffle à un morceau, notre équipe créative se charge de transformer vos paroles en une expérience visuelle mémorable.</p>
+
+                    <p><strong>Contactez-nous dès maintenant</strong> et faites vibrer vos fans avec une vidéo lyrics à votre image !</p>
+                    
+                    <div class="whatsapp-redirect">
+                        <span class="arrow-icon">➜</span>
+                        <a href="https://wa.me/22966192817" class="whatsapp-button" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+                            Contactez-nous sur WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-section">
+                <h3>GRAPHISME</h3>
+                <div class="service-text">
+                    <p><strong>Transformez vos idées en créations visuelles percutantes avec nos services de graphisme !</strong></p>
+
+                    <p>Vous avez besoin d'un design qui se démarque et reflète parfaitement votre vision ? Que ce soit pour un logo, une affiche, un flyer, ou tout autre projet graphique, notre équipe de designers créatifs est prête à donner vie à vos idées avec des créations uniques et sur mesure.</p>
+
+                    <p><strong>Pourquoi nous choisir pour vos projets graphiques ?</strong></p>
+                    <ul>
+                        <li>🎨 <strong>Créativité sans limites</strong> : Des designs innovants, personnalisés pour capturer l'essence de votre marque, produit ou projet.</li>
+                        <li>💼 <strong>Expérience et expertise</strong> : Une équipe de graphistes professionnels, maîtrisant les dernières tendances et techniques de design.</li>
+                        <li>📐 <strong>Sur-mesure</strong> : Chaque projet est conçu pour répondre à vos besoins spécifiques.</li>
+                        <li>⏱️ <strong>Respect des délais</strong> : Des créations livrées rapidement, sans compromis sur la qualité.</li>
+                        <li>📊 <strong>Optimisé pour tous supports</strong> : Nos designs sont parfaitement adaptés à tous les formats.</li>
+                    </ul>
+
+                    <p>Un design professionnel et attrayant peut faire toute la différence pour capter l'attention de votre public. Que vous lanciez une nouvelle marque ou ayez besoin d'un rebranding, nous sommes là pour vous accompagner à chaque étape du processus.</p>
+
+                    <p><strong>Demandez un devis gratuit dès aujourd'hui</strong> et démarquez-vous avec des visuels qui font la différence !</p>
+					
+					 <div class="whatsapp-redirect">
+                        <span class="arrow-icon">➜</span>
+                        <a href="https://wa.me/22966192817" class="whatsapp-button" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+                            ENVOI NOUS TES INFORMATIONS ICI
+						   </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-section">
+                <h3>SHOOTING PHOTO</h3>
+                <div class="service-text">
+                    <p><strong>Immortalisez vos moments avec notre photoshooting professionnel !</strong></p>
+                    <p>Vous cherchez à capturer des souvenirs inoubliables ? Que ce soit pour un événement spécial, une séance personnelle ou professionnelle, notre équipe de photographes experts est prête à vous offrir une expérience unique et sur mesure.</p>
+
+                    <p><strong>Pourquoi nous choisir ?</strong></p>
+                    <ul>
+                        <li>📸 <strong>Qualité exceptionnelle</strong> : Des photos haute définition qui racontent votre histoire.</li>
+                        <li>🏞️ <strong>Cadres variés</strong> : Choisissez parmi plusieurs décors intérieurs ou extérieurs selon vos envies.</li>
+                        <li>💼 <strong>Professionnalisme et expertise</strong> : Nous vous guidons à chaque étape pour que vous soyez à l'aise.</li>
+                        <li>📅 <strong>Flexibilité des horaires</strong> : Des créneaux adaptés à votre emploi du temps chargé.</li>
+                        <li>🎨 <strong>Rétouches professionnelles</strong> : Finition soignée pour un rendu parfait.</li>
+                        <li>✨ <strong>Offres personnalisées</strong> : Des forfaits adaptés à vos besoins et à votre budget.</li>
+                    </ul>
+
+                    <p>Que vous souhaitiez renouveler votre book, immortaliser un moment spécial en couple, en famille ou entre amis, ou tout simplement briller devant l'objectif, nous sommes là pour sublimer chaque instant.</p>
+
+                    <p><strong>Prenez rendez-vous dès maintenant</strong> et laissez-nous capturer la beauté de vos instants précieux !</p>
+					
+					<div class="whatsapp-redirect">
+                        <span class="arrow-icon">➜</span>
+                        <a href="https://wa.me/22966192817" class="whatsapp-button" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+                           DONNEZ NOUS VOTRE DISPONIBILITE ICI
+						   </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="videos" class="section">
             <h2>O'flix BENIN Vidéos</h2>
             <button class="accordion">SERIES ORINX PRODUCTION</button>
@@ -322,9 +478,7 @@
                         </iframe>
                     </div>
                 </div>
-                <div class="content-item">Musique 2</div>
-                <div class="content-item">Musique 3</div>
-                <div class="content-item">Musique 4</div>
+              
             </div>
         </section>
 
@@ -336,33 +490,88 @@
             <p>En tant que DG d'ORINX PRODUCTION, il supervise la création et la distribution de contenu de haute qualité, mettant en valeur les talents locaux et internationaux. Son expertise dans l'industrie musicale et sa vision novatrice ont fait d'O'flix BENIN une plateforme de choix pour les amateurs de musique et de vidéos.</p>
             <p>Orinx Lyrics continue d'inspirer et de guider l'équipe d'O'flix BENIN, en veillant à ce que la plateforme reste à la pointe de l'innovation dans le domaine du streaming et de la production musicale.</p>
         </section>
-
-        <section id="about" class="about-us">
+        
+        <!-- Section À propos avec contenu complet -->
+        <div class="section" id="about">
             <h2>À propos de nous</h2>
-            <p>Téléphone : +22966192817 / 99578258</p>
-            <p>Email : oflixbenin@gmail.com</p>
-            <a href="https://wa.me/22966192817" class="whatsapp-button" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
-                Nous contacter sur WhatsApp
-            </a>
-        </section>
+            <div class="section-content">
+                <div class="about-content">
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> Téléphone : +229 66 19 28 17 / 99 57 82 58</p>
+                        <p><i class="fas fa-envelope"></i> Email : oflixbenin@gmail.com</p>
+                    </div>
+                    <a href="https://wa.me/22966192817" class="whatsapp-button" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+                        Nous contacter sur WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
-
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Rendre les sections pliables (sauf À propos)
+            const sections = document.querySelectorAll('.section:not(#about) h2');
+            sections.forEach(section => {
+                section.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
             });
-        }
+        });
+    </script>
+</body>
+</html>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion des sections principales
+            const sections = document.querySelectorAll('.section:not(#about) h2');
+            sections.forEach(section => {
+                section.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            });
+
+            // Gestion des sous-sections de services
+            const serviceSections = document.querySelectorAll('.service-section h3');
+            serviceSections.forEach(section => {
+                section.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    content.classList.toggle('active');
+                    
+                    if (content.classList.contains('active')) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    } else {
+                        content.style.maxHeight = null;
+                    }
+
+                    // Ajuster la hauteur maximale de la section parente si nécessaire
+                    const parentSection = this.closest('.section');
+                    if (parentSection && parentSection.querySelector('h2.active')) {
+                        const parentContent = parentSection.querySelector('.section-content');
+                        if (parentContent) {
+                            parentContent.style.maxHeight = parentContent.scrollHeight + "px";
+                        }
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
