@@ -1,5 +1,6 @@
 <!DOCTYPE html>
- <head>
+<html lang="fr">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O'flix BENIN - Votre plateforme de streaming personnalisée</title>
@@ -7,13 +8,11 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-
-        /* Ajout des nouveaux styles pour les services */
+        /* Styles existants */
         .service-section {
             margin-bottom: 20px;
         }
    
-			
         .service-section h3 {
             background-color: #e50914;
             color: white;
@@ -21,7 +20,6 @@
             margin: 0;
             cursor: pointer;
             display: flex;
-          
         }
 
         .service-section h3:after {
@@ -60,8 +58,6 @@
             margin: 10px 0;
         }
 
-    
-
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -71,7 +67,7 @@
             overflow-x: hidden;
         }
 
-        /* Styles pour l'écran de chargement */
+        /* Écran de chargement */
         .splash-screen {
             position: fixed;
             top: 0;
@@ -126,7 +122,7 @@
             100% { width: 100%; }
         }
 
-        /* Styles pour l'en-tête fixe */
+        /* En-tête fixe */
         .header-container {
             position: sticky;
             top: 0;
@@ -164,7 +160,7 @@
             animation: slideInFromLeft 1s ease-out 3.5s backwards;
         }
 
-        /* Navigation styles */
+        /* Navigation */
         nav {
             padding: 1rem;
             display: flex;
@@ -188,7 +184,7 @@
             transform: scale(1.05);
         }
 
-        /* Styles pour les sections */
+        /* Sections */
         .section {
             margin-bottom: 20px;
         }
@@ -216,7 +212,6 @@
             transform: rotate(180deg);
         }
 
-        /* Exception pour la section À propos */
         #about h2 {
             cursor: default;
             background: #e50914;
@@ -240,7 +235,6 @@
             padding: 20px;
         }
 
-        /* Styles pour le contenu À propos */
         .about-content {
             display: flex;
             flex-direction: column;
@@ -292,21 +286,175 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
-        /* Responsive Design */
+        /* Nouveaux styles responsives */
         @media screen and (max-width: 768px) {
-            .splash-logo {
-                font-size: 3rem;
+            .header-container {
+                padding: 0.5rem;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .header-text {
+                font-size: 0.9em;
+                padding: 0 10px;
+                line-height: 1.4;
             }
 
             nav {
-                flex-direction: column;
+                padding: 0.5rem;
             }
 
             nav a {
-                width: 80%;
-                margin: 5px auto;
+                width: 100%;
+                padding: 0.8rem;
+                margin: 0.3rem 0;
                 text-align: center;
+                font-size: 1rem;
             }
+
+            .service-section h3 {
+                padding: 12px;
+                font-size: 1rem;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .service-text {
+                padding: 15px;
+                font-size: 0.9em;
+            }
+
+            .service-text ul {
+                padding-left: 15px;
+            }
+
+            .service-text li {
+                margin: 8px 0;
+            }
+
+            .whatsapp-button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .whatsapp-icon {
+                width: 20px;
+                height: 20px;
+            }
+
+            #founder {
+                padding: 15px;
+            }
+
+            #founder h2 {
+                font-size: 1.5rem;
+            }
+
+            #founder h3 {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                padding: 15px;
+            }
+
+            .contact-info p {
+                font-size: 0.9em;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .splash-logo {
+                font-size: 2.5rem;
+            }
+
+            .loading-bar-container {
+                width: 80%;
+                max-width: 180px;
+            }
+
+            .header-text {
+                font-size: 0.85em;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+                padding: 0.7rem;
+            }
+        }
+
+        @media screen and (min-width: 769px) {
+            .service-section h3 {
+                font-size: 1.2rem;
+                padding: 18px;
+            }
+
+            .service-text {
+                font-size: 1em;
+                line-height: 1.6;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            nav a {
+                min-width: 120px;
+            }
+        }
+
+        /* Styles pour la section vidéo */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-title {
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        /* Styles pour l'accordéon */
+        .accordion {
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+            font-size: 1em;
+        }
+
+        .accordion:hover {
+            background-color: #444;
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: #232323;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
         }
     </style>
 </head>
