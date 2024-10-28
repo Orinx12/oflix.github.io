@@ -79,8 +79,47 @@
             display: flex;
         }
 
-        /* [Le reste de vos styles existants reste inchangé] */
-        /* Je conserve tous les styles existants mais je les omets ici pour la clarté */
+     .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* Ratio 16:9 */
+        height: 0;
+        overflow: hidden;
+        margin: 15px 0;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .video-title {
+        text-align: center;
+        margin: 10px 0;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    /* Assurez-vous que les vidéos sont visibles quand la section est dépliée */
+    .section-content {
+        background-color: #232323;
+        max-height: none;
+        overflow: visible;
+    }
+
+    /* Ajustement pour l'affichage des sections de service */
+    .service-section .service-text {
+        background-color: #232323;
+        color: #fff;
+    }
+
+    .service-text.active {
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
         
          <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O'flix BENIN - Votre plateforme de streaming personnalisée</title>
@@ -695,22 +734,38 @@
             </div>
         </section>
 
-        <section id="videos" class="section">
-            <h2>O'flix BENIN Vidéos</h2>
-            <button class="accordion">SERIES ORINX PRODUCTION</button>
-            <div class="panel">
-                <button class="accordion">AIDE MOI DOCTEUR (SAISON 1)</button>
-                <div class="panel">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/ajGUS4vEkek?si=MLlj4Mzfm-lyW-7p" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <section id="videos" class="section">
+    <h2>O'flix BENIN Vidéos</h2>
+    <div class="section-content">
+        <div class="service-section">
+            <h3>SERIES ORINX PRODUCTION</h3>
+            <div class="service-text">
+                <div class="service-section">
+                    <h3>AIDE MOI DOCTEUR (SAISON 1)</h3>
+                    <div class="service-text">
+                        <div class="video-container">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/ajGUS4vEkek?si=MLlj4Mzfm-lyW-7p" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <p class="video-title">AIDE MOI DOCTEUR SAISON 1 EPISODE 1</p>
+                        
+                        <div class="video-container">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/FQuo4aud6-c?si=4GhFdirbVs84nPRC" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <p class="video-title">AIDE MOI DOCTEUR SAISON 1 EPISODE 2</p>
                     </div>
-                    <p class="video-title">AIDE MOI DOCTEUR SAISON 1 EPISODE 1</p>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/FQuo4aud6-c?si=4GhFdirbVs84nPRC" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                    </div>
-                    <p class="video-title">AIDE MOI DOCTEUR SAISON 1 EPISODE 2</p>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
         </section>
         
         <section id="musique" class="section">
@@ -820,5 +875,32 @@
             });
         });
     </script>
+	<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Gestion des sections de service
+    const serviceSections = document.querySelectorAll('.service-section h3');
+    serviceSections.forEach(section => {
+        section.addEventListener('click', function() {
+            // Bascule la classe active sur le titre
+            this.classList.toggle('active');
+            
+            // Trouve la div de contenu suivante
+            const content = this.nextElementSibling;
+            content.classList.toggle('active');
+            
+            // Ajuste la hauteur maximale
+            if (content.classList.contains('active')) {
+                content.style.maxHeight = 'none'; // Permet un affichage complet
+            } else {
+                content.style.maxHeight = '0px';
+            }
+        });
+    });
+});
+</script>
+Last edited il y a 5 minutes
+
+
+
 </body>
 </html>
