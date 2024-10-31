@@ -25,6 +25,19 @@
 
         .download-button:hover {
             background-color: #218838;
+			 transform: translateY(-2px);
+	     }
+
+        /* Animation pour le bouton de téléchargement */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .download-button:active {
+            animation: pulse 0.3s ease-in-out;
+        }
         }
 
         #tête {
@@ -555,7 +568,7 @@
     <!-- En-tête fixe modifié -->
     <div class="header-container">
         <header id="tête">
-            <a href="downloads/OFLIXBENIN.apk" class="download-button" target="_blank">Téléchargez l'application ici</a>
+            <a href="downloads/LaBonneSouffrance.apk" class="download-button" target="_blank">Téléchargez l'application ici</a>
 			  onclick="trackDownload()">
 	     </div>
     </div>
@@ -802,6 +815,9 @@
                 });
             });
         });
+		 function trackDownload() {
+            // Vous pouvez ajouter ici un code pour suivre les téléchargements
+            console.log('Téléchargement démarré');
     </script>
 </body>
 </html>
